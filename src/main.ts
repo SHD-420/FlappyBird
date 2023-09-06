@@ -2,12 +2,17 @@ import Background from "./entities/Background";
 import Player from "./entities/Player";
 import Stage from "./entities/Stage";
 import createGameOverMenu from "./menu/game-over-menu";
+import createScoreBoard from "./menu/score-board";
 import createStartMenu from "./menu/start-menu";
 
 import "./style.css";
 
 class Game {
+  private timeElapsed = 0;
+
   private readonly canvas = document.createElement("canvas");
+
+  private readonly scoreBoard = createScoreBoard();
 
   // declare game entities
   private readonly backgroud: Background;
@@ -31,6 +36,11 @@ class Game {
     this.stage = new Stage(ctx, gameData);
     this.player = new Player(ctx, gameData);
 
+    // handle player input
+    window.addEventListener("click", () => {
+      this.player.setInput();
+    });
+
     // handle screen resize
     window.addEventListener("resize", () => {
       const newGameWidth = Math.min(window.innerWidth, 768);
@@ -43,7 +53,7 @@ class Game {
       this.backgroud.game.width = newGameWidth;
     });
 
-    // attach start menu and game to DOM
+    // attach start menu, score board and game to DOM
     this.container.appendChild(
       createStartMenu({
         onStartClick: () => this.start(),
@@ -59,6 +69,10 @@ class Game {
   private animate(time: number, lastTime?: number) {
     const dt = time - (lastTime ?? time);
 
+    this.timeElapsed += dt;
+
+    this.scoreBoard.update(Math.round(this.timeElapsed / 100));
+
     this.backgroud.render();
     this.stage.render(dt);
     this.player.render();
@@ -71,8 +85,10 @@ class Game {
         radius: this.player.radius,
       })
     ) {
+      this.scoreBoard.hide();
       this.container.appendChild(
         createGameOverMenu({
+          score: Math.round(this.timeElapsed / 100),
           onReplayClick: () => this.reset(),
         })
       );
@@ -86,14 +102,12 @@ class Game {
    * Start game animation
    */
   private start() {
-    window.addEventListener("click", () => {
-      this.player.setInput();
-    });
-
+    this.container.appendChild(this.scoreBoard);
     requestAnimationFrame(this.animate.bind(this));
   }
 
   private reset() {
+    this.timeElapsed = 0;
     this.stage.reset();
     this.player.reset();
     this.start();
