@@ -9,6 +9,7 @@ import "./style.css";
 
 class Game {
   private timeElapsed = 0;
+  private isRunning = false;
 
   private readonly canvas = document.createElement("canvas");
 
@@ -85,13 +86,18 @@ class Game {
         radius: this.player.radius,
       })
     ) {
+      // hide score
       this.scoreBoard.hide();
+
+      // show game over menu
       this.container.appendChild(
         createGameOverMenu({
           score: Math.round(this.timeElapsed / 100),
           onReplayClick: () => this.reset(),
         })
       );
+
+      this.isRunning = false;
       return;
     }
 
@@ -102,11 +108,14 @@ class Game {
    * Start game animation
    */
   private start() {
+    if (this.isRunning) return;
+    this.isRunning = true;
     this.container.appendChild(this.scoreBoard);
     requestAnimationFrame(this.animate.bind(this));
   }
 
   private reset() {
+    if (this.isRunning) return;
     this.timeElapsed = 0;
     this.stage.reset();
     this.player.reset();

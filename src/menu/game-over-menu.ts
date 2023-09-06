@@ -8,12 +8,19 @@ export default function createGameOverMenu({
   score: number;
   onReplayClick: () => void;
 }) {
+  let didClickReplay = false;
+
   const gameOverMenuContent = el("div").children([
     el("p").text(`SCORE: ${score}`),
     el("div").children([
       el("button")
         .text("REPLAY")
         .on("click", () => {
+          // handle click only once
+          if (didClickReplay) return;
+
+          didClickReplay = true;
+
           const exitTimeline = anime.timeline({
             easing: "easeOutExpo",
           });
