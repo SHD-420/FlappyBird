@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#app {
+  flex-grow: 1;
+
+  display: grid;
+  place-content: center;
+}
+
+#app > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+#app canvas {
+  z-index: -1;
+  background-color: white;
+}
+
+#app .start-menu {
+  background-color: #0009;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app .start-menu button {
+  padding: 1rem 4rem;
+  font-size: 2rem;
+  border-radius: 4px;
+  border: none;
+  font-family: monospace;
+}
