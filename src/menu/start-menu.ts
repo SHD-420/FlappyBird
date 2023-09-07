@@ -6,25 +6,27 @@ export default function createStartMenu({
 }: {
   onStartClick: () => void;
 }) {
-  const startMenuContent = el("div").children([
-    el("button")
-      .text("PLAY")
-      .on("click", async () => {
-        anime({
-          targets: startMenu,
-          opacity: 0,
-          easing: "easeOutExpo",
-          duration: 250,
-          complete() {
-            onStartClick();
-            startMenu.remove();
-          },
-        });
-      }),
-  ]);
+  const startMenuContent = el("div")
+    .class("will-change-transform")
+    .children([
+      el("button")
+        .text("PLAY")
+        .on("click", async () => {
+          anime({
+            targets: startMenu,
+            opacity: 0,
+            easing: "easeOutExpo",
+            duration: 250,
+            complete() {
+              onStartClick();
+              startMenu.remove();
+            },
+          });
+        }),
+    ]);
 
   const startMenu = el("div")
-    .class("start-menu")
+    .class("start-menu", "will-change-transform", "will-change-opacity")
     .children([startMenuContent]).el;
 
   const enterTimeline = anime.timeline();

@@ -10,38 +10,31 @@ export default function createGameOverMenu({
 }) {
   let didClickReplay = false;
 
-  const gameOverMenuContent = el("div").children([
-    el("p").text(`SCORE: ${score}`),
-    el("div").children([
-      el("button")
-        .text("REPLAY")
-        .on("click", () => {
-          // handle click only once
-          if (didClickReplay) return;
+  const gameOverMenuContent = el("div")
+    .class("will-change-transform")
+    .children([
+      el("p").text(`SCORE: ${score}`),
+      el("div").children([
+        el("button")
+          .text("REPLAY")
+          .on("click", () => {
+            // handle click only once
+            if (didClickReplay) return;
 
-          didClickReplay = true;
+            didClickReplay = true;
 
-          const exitTimeline = anime.timeline({
-            easing: "easeOutExpo",
-          });
-
-          exitTimeline.add({
-            targets: [Array.from(gameOverMenuContent.el.children)],
-            opacity: 0,
-            scale: 1.5,
-            delay: anime.stagger(200),
-            complete: onReplayClick,
-          });
-          exitTimeline.add({
-            targets: gameOverMenu,
-            opacity: 0,
-          });
-        }),
-    ]),
-  ]);
+            anime({
+              targets: gameOverMenu,
+              opacity: 0,
+              easing: "easeOutExpo",
+              complete: () => onReplayClick(),
+            });
+          }),
+      ]),
+    ]);
 
   const gameOverMenu = el("div")
-    .class("game-over-menu")
+    .class("game-over-menu", "will-change-opacity", "will-change-transform")
     .children([gameOverMenuContent]).el;
 
   const enterTimeline = anime.timeline({

@@ -5,12 +5,12 @@ export default function createScoreBoard() {
   const scoreBoardContent = el("p");
 
   const scoreBoard = el("div")
-    .class("score-board")
+    .class("score-board", "will-change-transform")
     .children([scoreBoardContent]);
 
   const updatableScoreBoard = scoreBoard.el as HTMLDivElement & {
     update: (newVal: number) => void;
-    hide: () => void
+    hide: () => void;
   };
   updatableScoreBoard.update = (newVal) => {
     scoreBoardContent.text(`${newVal}`);
@@ -26,7 +26,6 @@ export default function createScoreBoard() {
       },
     });
   };
-
 
   return updatableScoreBoard;
 }

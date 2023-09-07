@@ -16,26 +16,6 @@ export default class Stage extends GameEntity {
 
   currentPillars: Pillar[] = INITIAL_PILLARS;
 
-  private pillarTilePattern!: CanvasPattern;
-
-  constructor(
-    protected readonly ctx: CanvasRenderingContext2D,
-    public readonly game: GameEntity["game"]
-  ) {
-    super(ctx, game);
-
-
-    // initialize pillar pattern
-    const tileImage = new Image(20, 20);
-    tileImage.src = "/brick.png";
-    tileImage.onload = () => {
-      const pattern = ctx.createPattern(tileImage, "repeat");
-      if (!pattern) throw new Error("Error while creating pillar tile image!");
-      pattern.setTransform(new DOMMatrix([1, 0, 0, 1, screenX, screenY]));
-      this.pillarTilePattern = pattern;
-    };
-  }
-
   render(dt: number) {
     this.ctx.fillStyle = "white";
     this.ctx.fillStyle = "black";
@@ -74,7 +54,7 @@ export default class Stage extends GameEntity {
 
     this.currentPillars = newPillars;
 
-    this.ctx.fillStyle = this.pillarTilePattern;
+    this.ctx.fillStyle = "#444";
 
     for (const pillar of this.currentPillars) {
       this.ctx.fillRect(

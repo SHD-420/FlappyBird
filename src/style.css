@@ -2,6 +2,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
 }
 
 button {
@@ -13,8 +26,14 @@ body {
   background-color: #111;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  overflow: hidden;
+  padding: 1rem 0;
+  overflow-x: hidden;
+}
+
+@media screen and (min-width: 600px) {
+  .spacer {
+    height: 32px;
+  }
 }
 
 #app {
@@ -86,7 +105,7 @@ body {
   color: white;
 }
 
-#app .score-board {  
+#app .score-board {
   justify-self: end;
   align-self: start;
   padding: 1rem;
@@ -95,13 +114,13 @@ body {
 #app .score-board p {
   width: 4rem;
   height: 4rem;
-  background-color: #a1ecff;
-  color: #0099e0;
-  box-shadow: inset -12px -12px 20px white;
-  border-radius: 1rem;
+  background-image: linear-gradient(to bottom right, #ff6767, #ff9a9a);
+  color: #4d2323;
+  box-shadow: inset -2px -2px 4px #ffe4e4, 0 2px 4px #991313;
+  border-radius: 50%;
+  font-size: 1.5rem;
   font-weight: bolder;
   font-family: sans-serif;
-  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
