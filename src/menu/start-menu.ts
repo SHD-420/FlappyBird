@@ -1,4 +1,4 @@
-import { el } from "./dom-utils";
+import { el } from "../utils";
 import anime from "animejs";
 
 export default function createStartMenu({

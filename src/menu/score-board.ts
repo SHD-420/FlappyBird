@@ -1,5 +1,5 @@
 import anime from "animejs";
-import { el } from "./dom-utils";
+import { el } from "../utils";
 
 export default function createScoreBoard() {
   const scoreBoardContent = el("p");

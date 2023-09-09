@@ -1,5 +1,5 @@
 import anime from "animejs";
-import { el } from "./dom-utils";
+import { el } from "../utils";
 
 export default function createGameOverMenu({
   onReplayClick,
@@ -52,8 +52,7 @@ export default function createGameOverMenu({
       targets: gameOverMenuContent.el,
       translateY: [40, 0],
       scale: [0, 1],
-      easing: "easeOutExpo",
-      duration: 400,
+      easing: "spring",
     },
     400
   );
