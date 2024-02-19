@@ -5,7 +5,7 @@
 # -Vite
 # -Typescript
 # -HTML5 Canvas
-# -Anime.js
+ -Anime.js
 
 
 ## Setting up development environment
