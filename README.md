@@ -3,9 +3,9 @@
 
 ## Tech Used:
  -Vite<br>
- -Typescript
--HTML5 Canvas
- -Anime.js
+ -Typescript<br>
+-HTML5 Canvas<br>
+ -Anime.js<br>
 
 
 ## Setting up development environment
