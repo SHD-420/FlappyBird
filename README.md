@@ -1,11 +1,11 @@
 # Flappy Bird
-## Browser based mobile compatible flappy bird game, in Typescript. The project is deployed on netlify [here](https://effortless-torte-012e7b.netlify.app).
+Browser based mobile compatible flappy bird game, in Typescript. The project is deployed on netlify [here](https://effortless-torte-012e7b.netlify.app).
 
 ## Tech Used:
- -Vite<br>
- -Typescript<br>
--HTML5 Canvas<br>
- -Anime.js<br>
+ - Vite
+ - Typescript
+ - HTML5 Canvas
+ - Anime.js
 
 
 ## Setting up development environment
